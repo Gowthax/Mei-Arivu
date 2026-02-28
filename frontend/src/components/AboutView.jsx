@@ -3,7 +3,9 @@ import { Phone, Mail, MapPin, Globe, Github, ExternalLink, Users, Award, Cpu, Le
 import { useLanguage } from '../context/LanguageContext';
 
 const team = [
-    { name: 'Gowtham Meiyazhagan', role: 'Founder & Lead Developer', initials: 'GM' },
+    { name: 'Gowtham N', role: 'Creator', initials: 'GN' },
+    { name: 'Abirami K', role: 'Creator', initials: 'AK' },
+    { name: 'Indu M', role: 'Creator', initials: 'IM' },
 ];
 
 const techStack = [
@@ -20,12 +22,7 @@ const SectionHeader = ({ icon: Icon, title, sub, accent }) => (
         className="p-5 flex items-center gap-4"
         style={{ borderBottom: '1px solid var(--border)' }}
     >
-        <div
-            className="w-9 h-9 flex items-center justify-center flex-shrink-0"
-            style={{ border: `1px solid ${accent || 'var(--accent)'}`, background: 'transparent' }}
-        >
-            <Icon className="w-4 h-4" style={{ color: accent || 'var(--accent)' }} />
-        </div>
+        <Icon className="w-6 h-6 flex-shrink-0" style={{ color: accent || 'var(--accent)', strokeWidth: 1.5 }} />
         <div>
             <h3 className="font-heading font-bold text-lg" style={{ color: 'var(--text-primary)' }}>{title}</h3>
             <p className="brutal-label mt-0.5">{sub}</p>
@@ -52,30 +49,21 @@ export default function AboutView() {
                             className="absolute inset-0 w-full h-full object-cover"
                             src="/about page/202560-918431383_small.mp4"
                         />
-                        {/* Dark overlay */}
-                        <div className="absolute inset-0" style={{ background: 'rgba(6,9,8,0.85)' }} />
-                        {/* Grid overlay */}
-                        <div
-                            className="absolute inset-0 opacity-[0.04]"
-                            style={{
-                                backgroundImage: 'linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)',
-                                backgroundSize: '60px 60px',
-                            }}
-                        />
+                        {/* Light overlay */}
+                        <div className="absolute inset-0" style={{ background: 'rgba(249, 248, 246, 0.75)' }} />
                     </div>
                     <div className="relative z-10 flex items-start gap-6">
                         <div
-                            className="w-16 h-16 flex-shrink-0 overflow-hidden"
-                            style={{ border: '2px solid var(--accent)', background: 'var(--accent-deep)' }}
+                            className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-full shadow-lg"
                         >
-                            <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ filter: 'invert(1) brightness(1.1)' }} />
+                            <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ objectFit: 'contain', padding: '4px' }} />
                         </div>
                         <div>
                             <h2
                                 className="font-heading font-bold"
                                 style={{ fontSize: '2rem', color: 'var(--text-primary)', lineHeight: 1.1 }}
                             >
-                                MeiValam — Intelligent Platform
+                                Mei Arivu — Intelligent Platform
                             </h2>
                             <p
                                 className="brutal-label mt-2"
@@ -99,7 +87,7 @@ export default function AboutView() {
                 className="overflow-hidden cinema-enter cinema-enter-2"
                 style={{ background: 'var(--bg-surface)', border: '1px solid var(--border)' }}
             >
-                <SectionHeader icon={Leaf} title="Our Mission" sub="Why we built MeiValam" />
+                <SectionHeader icon={Leaf} title="Our Mission" sub="Why we built Mei Arivu" />
                 <div className="p-5">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-px"
                         style={{ background: 'var(--border)' }}
@@ -110,12 +98,7 @@ export default function AboutView() {
                             { icon: Users, title: 'Public Health Integration', desc: 'Connecting waste data to vector breeding predictions, enabling proactive health department alerts and anti-larval operations.' },
                         ].map(m => (
                             <div key={m.title} className="p-5" style={{ background: 'var(--bg-primary)' }}>
-                                <div
-                                    className="w-8 h-8 flex items-center justify-center mb-4"
-                                    style={{ border: '1px solid var(--accent)', background: 'rgba(16,185,129,0.06)' }}
-                                >
-                                    <m.icon className="w-4 h-4" style={{ color: 'var(--accent)' }} />
-                                </div>
+                                <m.icon className="w-8 h-8 mb-4" style={{ color: 'var(--accent)', strokeWidth: 1.5 }} />
                                 <h4
                                     className="font-heading font-bold text-lg mb-2"
                                     style={{ color: 'var(--text-primary)' }}
@@ -135,21 +118,9 @@ export default function AboutView() {
                 <SectionHeader icon={Users} title="Team" sub="The people behind the platform" />
                 <div className="p-5">
                     {team.map(member => (
-                        <div key={member.name} className="flex items-center gap-4">
-                            <div
-                                className="w-14 h-14 flex items-center justify-center font-heading font-bold text-2xl flex-shrink-0"
-                                style={{
-                                    border: '2px solid var(--accent)',
-                                    background: 'var(--accent-deep)',
-                                    color: 'var(--accent)',
-                                }}
-                            >
-                                {member.initials}
-                            </div>
-                            <div>
-                                <h4 className="font-heading font-bold text-xl" style={{ color: 'var(--text-primary)' }}>{member.name}</h4>
-                                <p className="brutal-label mt-1" style={{ color: 'var(--accent)' }}>{member.role}</p>
-                            </div>
+                        <div key={member.name} className="flex flex-col mb-4 last:mb-0">
+                            <h4 className="font-heading font-bold text-xl" style={{ color: 'var(--text-primary)' }}>{member.name}</h4>
+                            <p className="brutal-label mt-1" style={{ color: 'var(--accent)' }}>{member.role}</p>
                         </div>
                     ))}
                 </div>

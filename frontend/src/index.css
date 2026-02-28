@@ -7,52 +7,35 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── FORCED DARK PALETTE ────────────────────────────────────────────
+/* ─── FORCED ELEGANT LIGHT PALETTE ────────────────────────────────────
    User palette reference:
-   #073B3A  Mid-night green  → backgrounds
-   #0B6E4F  Sherlock green   → surfaces / borders
-   #08A045  Pigment green    → primary accent
-   #6BBF59  Mantis           → highlight / success
-   #21D375  Emerald          → bright pop
+   Elegant, soft off-whites, neutral borders, high-contrast dark text
 ─────────────────────────────────────────────────────────────────── */
 :root {
-  /* Backgrounds — always dark */
-  --bg-primary: #050f0e;
-  /* deeper than midnight green */
-  --bg-surface: #073B3A;
-  /* mid-night green */
-  --bg-raised: #0a4d4a;
-  /* slightly lighter surface */
+  /* Backgrounds — light & elegant */
+  --bg-primary: #F9F8F6;
+  --bg-surface: #FFFFFF;
+  --bg-raised: #F0EDE6;
 
-  /* Text — always high contrast on dark */
-  --text-primary: #f2faf5;
-  /* near-white warm */
-  --text-muted: #7aafa4;
-  /* muted green-grey */
-  --text-faint: #2e5954;
-  /* very faint, decorative only */
+  /* Text — deep charcoal / black on light */
+  --text-primary: #1A1A1A;
+  --text-muted: #666666;
+  --text-faint: #B3B3B3;
 
-  /* Borders */
-  --border: #0d4a45;
-  /* subtle dark border */
-  --border-mid: #0B6E4F;
-  /* sherlock green border */
+  /* Borders — soft, thin lines */
+  --border: #E5E0D8;
+  --border-mid: #D1CBBF;
 
-  /* Accents */
-  --accent: #08A045;
-  /* pigment green — primary */
-  --accent-deep: #054d26;
-  /* dark accent for hover bg */
-  --accent-light: #6BBF59;
-  /* mantis — highlight */
-  --accent-bright: #21D375;
-  /* emerald bright — pop */
-  --accent-acid: #6BBF59;
-  /* alias for components using acid */
+  /* Accents — elegant black/dark for contrast */
+  --accent: #1A1A1A;
+  --accent-deep: #000000;
+  --accent-light: #E5E0D8;
+  --accent-bright: #333333;
+  --accent-acid: #1A1A1A;
 
   /* Semantic */
-  --danger: #ef4444;
-  --warn: #f59e0b;
+  --danger: #D32F2F;
+  --warn: #F57C00;
 }
 
 /* ─── BASE ──────────────────────────────────────────────────────────── */
@@ -66,7 +49,7 @@
 
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -75,8 +58,6 @@
     font-family: 'Outfit', -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Subtle grain texture */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   }
 
   h1,
@@ -86,13 +67,13 @@
   h5,
   h6 {
     font-family: 'Playfair Display', Georgia, serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
     line-height: 1.1;
   }
 
   ::selection {
-    background: var(--accent);
-    color: #000;
+    background: var(--border-mid);
+    color: var(--accent-deep);
   }
 
   /* Scrollbar */
@@ -106,33 +87,33 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--accent-deep);
+    background: var(--border-mid);
   }
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
   }
 
-  /* Force dark on all native form elements */
+  /* Force light on all native form elements */
   select,
   input,
   textarea {
-    color-scheme: dark;
+    color-scheme: light;
   }
 }
 
-/* ─── BRUTALIST UTILITIES ───────────────────────────────────────────── */
+/* ─── REFINED UTILITIES (OVERRIDING BRUTALISM) ───────────────────────── */
 @layer components {
   .brutal-card {
     background: var(--bg-surface);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--accent);
     position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   }
 
   .brutal-card-flat {
     background: transparent;
-    border: 1px solid var(--border-mid);
+    border: 1px solid var(--border);
     position: relative;
   }
 
@@ -142,16 +123,18 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    padding: 2px 8px;
-    border: 1px solid currentColor;
+    padding: 4px 10px;
+    border: 1px solid var(--border-mid);
+    border-radius: 9999px;
+    /* Elegant pill shape */
   }
 
   .brutal-label {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.65rem;
-    font-weight: 500;
+    font-size: 0.7rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     color: var(--text-muted);
   }
 

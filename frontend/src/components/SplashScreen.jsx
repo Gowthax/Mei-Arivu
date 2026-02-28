@@ -15,7 +15,7 @@ export default function SplashScreen({ onFinish }) {
         <div
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
             style={{
-                background: 'rgba(5, 15, 14, 0.85)',
+                background: 'rgba(249, 248, 246, 0.85)',
                 backdropFilter: phase === 'enter' ? 'blur(0px)' : 'blur(12px)',
                 WebkitBackdropFilter: phase === 'enter' ? 'blur(0px)' : 'blur(12px)',
                 opacity: phase === 'exit' ? 0 : 1,
@@ -40,6 +40,9 @@ export default function SplashScreen({ onFinish }) {
                     opacity: phase === 'enter' ? 0 : 1,
                     transform: phase === 'enter' ? 'scale(0.8) translateY(24px)' : 'scale(1) translateY(0)',
                     filter: phase === 'enter' ? 'blur(8px)' : 'blur(0px)',
+                    overflow: 'hidden',
+                    borderRadius: '50%',
+                    boxShadow: phase === 'enter' ? 'none' : '0 10px 40px rgba(0,0,0,0.08)'
                 }}
             >
                 <img
@@ -62,7 +65,7 @@ export default function SplashScreen({ onFinish }) {
                     className="font-heading font-bold text-center"
                     style={{ fontSize: '2.5rem', color: 'var(--text-primary)', letterSpacing: '-0.02em', lineHeight: 1 }}
                 >
-                    MeiValam
+                    Mei Arivu
                 </h1>
             </div>
 

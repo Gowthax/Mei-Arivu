@@ -69,7 +69,7 @@ export default function Sidebar({ activeTab, onTabChange, onGoLanding }) {
             >
                 <button onClick={onGoLanding} className="flex items-center gap-3 group w-full text-left">
                     <div
-                        className="w-12 h-12 flex-shrink-0 flex items-center justify-center transition-all duration-500 group-hover:scale-105"
+                        className="w-14 h-14 flex-shrink-0 flex items-center justify-center transition-all duration-500 overflow-hidden rounded-full group-hover:scale-105 shadow-md"
                     >
                         <img
                             src="/assets/mei-arivu-logo.png"
@@ -82,7 +82,7 @@ export default function Sidebar({ activeTab, onTabChange, onGoLanding }) {
                             className="text-xl font-heading font-medium leading-none tracking-wide"
                             style={{ color: 'var(--text-primary)' }}
                         >
-                            MeiValam
+                            Mei Arivu
                         </h1>
                         <p
                             className="text-xs font-body mt-1 opacity-80"

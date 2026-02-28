@@ -37,13 +37,12 @@ export default function LandingPage({ onEnterDashboard }) {
                 <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <div
-                            className="w-9 h-9 flex-shrink-0 overflow-hidden"
-                            style={{ border: '2px solid var(--accent)', background: 'var(--accent-deep)' }}
+                            className="w-10 h-10 flex-shrink-0 overflow-hidden rounded-full shadow-md"
                         >
-                            <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ filter: 'invert(1) brightness(1.2)' }} />
+                            <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ objectFit: 'contain', padding: '4px' }} />
                         </div>
                         <div>
-                            <span className="text-lg font-heading font-bold" style={{ color: 'var(--text-primary)' }}>MeiValam</span>
+                            <span className="text-lg font-heading font-bold" style={{ color: 'var(--text-primary)' }}>Mei Arivu</span>
                             <span
                                 className="ml-2 brutal-label"
                                 style={{ letterSpacing: '0.2em', opacity: 0.6 }}
@@ -66,7 +65,7 @@ export default function LandingPage({ onEnterDashboard }) {
                             className="flex items-center gap-2 px-5 py-2 text-xs font-body font-bold uppercase tracking-widest transition-all duration-200"
                             style={{
                                 background: 'var(--accent)',
-                                color: '#000',
+                                color: 'var(--bg-surface)',
                                 border: 'none',
                             }}
                             onMouseEnter={e => { e.currentTarget.style.background = 'var(--accent-acid)'; }}
@@ -87,16 +86,8 @@ export default function LandingPage({ onEnterDashboard }) {
                         className="absolute inset-0 w-full h-full object-cover"
                         src="/landing page/video_20260227_214622_edit.mp4"
                     />
-                    {/* Overlay */}
-                    <div className="absolute inset-0" style={{ background: 'rgba(10,15,13,0.82)' }} />
-                    {/* Grid lines */}
-                    <div
-                        className="absolute inset-0 opacity-[0.04]"
-                        style={{
-                            backgroundImage: 'linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)',
-                            backgroundSize: '80px 80px',
-                        }}
-                    />
+                    {/* Light overlay */}
+                    <div className="absolute inset-0" style={{ background: 'rgba(249, 248, 246, 0.75)' }} />
                 </div>
 
                 <div
@@ -150,7 +141,7 @@ export default function LandingPage({ onEnterDashboard }) {
                         <button
                             onClick={onEnterDashboard}
                             className="group flex items-center gap-3 px-8 py-4 font-body font-bold text-xs uppercase tracking-widest transition-all duration-200"
-                            style={{ background: 'var(--accent)', color: '#000' }}
+                            style={{ background: 'var(--accent)', color: 'var(--bg-surface)' }}
                             onMouseEnter={e => {
                                 e.currentTarget.style.background = 'var(--accent-acid)';
                                 e.currentTarget.style.transform = 'translate(-2px,-2px)';
@@ -251,12 +242,7 @@ export default function LandingPage({ onEnterDashboard }) {
                                     e.currentTarget.style.background = 'var(--bg-primary)';
                                 }}
                             >
-                                <div
-                                    className="w-9 h-9 flex items-center justify-center mb-5"
-                                    style={{ border: '1px solid var(--accent)', background: 'rgba(16,185,129,0.07)' }}
-                                >
-                                    <f.icon className="w-4 h-4" style={{ color: 'var(--accent)' }} />
-                                </div>
+                                <f.icon className="w-7 h-7 mb-5" style={{ color: 'var(--accent)', strokeWidth: 1.5 }} />
                                 <h3
                                     className="font-heading font-bold text-xl mb-2"
                                     style={{ color: 'var(--text-primary)' }}
@@ -279,10 +265,9 @@ export default function LandingPage({ onEnterDashboard }) {
             >
                 <div className="max-w-4xl mx-auto">
                     <div
-                        className="w-20 h-20 overflow-hidden mb-10"
-                        style={{ border: '2px solid var(--accent)', background: 'var(--accent-deep)' }}
+                        className="w-24 h-24 overflow-hidden rounded-full shadow-lg mb-8 mx-auto"
                     >
-                        <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ filter: 'invert(1) brightness(1.1)' }} />
+                        <img src="/assets/mei-arivu-logo.png" alt="Mei Arivu" className="w-full h-full object-cover" style={{ objectFit: 'contain', padding: '8px' }} />
                     </div>
                     <h2
                         className="font-heading font-bold mb-2"
@@ -322,7 +307,7 @@ export default function LandingPage({ onEnterDashboard }) {
                     <button
                         onClick={onEnterDashboard}
                         className="group inline-flex items-center gap-3 px-8 py-4 font-body font-bold text-xs uppercase tracking-widest transition-all duration-200"
-                        style={{ background: 'var(--accent)', color: '#000' }}
+                        style={{ background: 'var(--accent)', color: 'var(--bg-surface)' }}
                         onMouseEnter={e => {
                             e.currentTarget.style.background = 'var(--accent-acid)';
                             e.currentTarget.style.transform = 'translate(-2px,-2px)';
@@ -347,15 +332,14 @@ export default function LandingPage({ onEnterDashboard }) {
                 <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                         <div
-                            className="w-6 h-6 flex-shrink-0 overflow-hidden"
-                            style={{ border: '1px solid var(--accent)' }}
+                            className="w-8 h-8 flex-shrink-0 overflow-hidden rounded-full"
                         >
-                            <img src="/assets/mei-arivu-logo.png" alt="Logo" className="w-full h-full object-cover" style={{ filter: 'invert(1)' }} />
+                            <img src="/assets/mei-arivu-logo.png" alt="Logo" className="w-full h-full object-cover" style={{ objectFit: 'contain' }} />
                         </div>
                         <span
                             className="brutal-label"
                             style={{ color: 'var(--text-muted)', letterSpacing: '0.2em' }}
-                        >MeiValam · Intelligent Platform</span>
+                        >Mei Arivu · Intelligent Platform</span>
                     </div>
                     <p
                         className="font-body"
