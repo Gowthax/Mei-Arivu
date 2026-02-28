@@ -1,0 +1,402 @@
+/* ─── FONTS ────────────────────────────────────────────────────────── */
+/* Playfair Display — high-contrast modern elegant serif */
+/* Outfit — clean, luxury geometric sans-serif for high legibility */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── FORCED DARK PALETTE ────────────────────────────────────────────
+   User palette reference:
+   #073B3A  Mid-night green  → backgrounds
+   #0B6E4F  Sherlock green   → surfaces / borders
+   #08A045  Pigment green    → primary accent
+   #6BBF59  Mantis           → highlight / success
+   #21D375  Emerald          → bright pop
+─────────────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds — always dark */
+  --bg-primary: #050f0e;
+  /* deeper than midnight green */
+  --bg-surface: #073B3A;
+  /* mid-night green */
+  --bg-raised: #0a4d4a;
+  /* slightly lighter surface */
+
+  /* Text — always high contrast on dark */
+  --text-primary: #f2faf5;
+  /* near-white warm */
+  --text-muted: #7aafa4;
+  /* muted green-grey */
+  --text-faint: #2e5954;
+  /* very faint, decorative only */
+
+  /* Borders */
+  --border: #0d4a45;
+  /* subtle dark border */
+  --border-mid: #0B6E4F;
+  /* sherlock green border */
+
+  /* Accents */
+  --accent: #08A045;
+  /* pigment green — primary */
+  --accent-deep: #054d26;
+  /* dark accent for hover bg */
+  --accent-light: #6BBF59;
+  /* mantis — highlight */
+  --accent-bright: #21D375;
+  /* emerald bright — pop */
+  --accent-acid: #6BBF59;
+  /* alias for components using acid */
+
+  /* Semantic */
+  --danger: #ef4444;
+  --warn: #f59e0b;
+}
+
+/* ─── BASE ──────────────────────────────────────────────────────────── */
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle grain texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #000;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-deep);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+
+  /* Force dark on all native form elements */
+  select,
+  input,
+  textarea {
+    color-scheme: dark;
+  }
+}
+
+/* ─── BRUTALIST UTILITIES ───────────────────────────────────────────── */
+@layer components {
+  .brutal-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    position: relative;
+  }
+
+  .brutal-card-flat {
+    background: transparent;
+    border: 1px solid var(--border-mid);
+    position: relative;
+  }
+
+  .brutal-badge {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 2px 8px;
+    border: 1px solid currentColor;
+  }
+
+  .brutal-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+  }
+
+  .brutal-number {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  /* Marching ants border */
+  .brutal-marching {
+    background-image: repeating-linear-gradient(90deg,
+        var(--accent) 0, var(--accent) 6px,
+        transparent 6px, transparent 12px);
+    background-size: 40px 2px;
+    background-repeat: repeat-x;
+    background-position: top;
+    animation: march 1s linear infinite;
+  }
+
+  /* Cinematic section entrance */
+  .cinema-enter {
+    opacity: 0;
+    animation: cinemaFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .cinema-enter-1 {
+    animation-delay: 0.05s;
+  }
+
+  .cinema-enter-2 {
+    animation-delay: 0.15s;
+  }
+
+  .cinema-enter-3 {
+    animation-delay: 0.25s;
+  }
+
+  .cinema-enter-4 {
+    animation-delay: 0.35s;
+  }
+
+  .cinema-enter-5 {
+    animation-delay: 0.45s;
+  }
+
+  .cinema-enter-6 {
+    animation-delay: 0.55s;
+  }
+
+  /* Slam in */
+  .slam-in {
+    opacity: 0;
+    animation: slamIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .slam-in-1 {
+    animation-delay: 0.08s;
+  }
+
+  .slam-in-2 {
+    animation-delay: 0.18s;
+  }
+
+  .slam-in-3 {
+    animation-delay: 0.28s;
+  }
+
+  .slam-in-4 {
+    animation-delay: 0.38s;
+  }
+
+  .slam-in-5 {
+    animation-delay: 0.48s;
+  }
+
+  /* Wipe underline */
+  .brutal-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .brutal-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .brutal-underline:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Glow hover */
+  .brutal-hover:hover {
+    box-shadow: 0 0 0 1px var(--accent), 4px 4px 0 var(--accent-deep);
+    transform: translate(-2px, -2px);
+    transition: all 0.2s ease;
+  }
+}
+
+/* ─── KEYFRAMES ─────────────────────────────────────────────────────── */
+@keyframes cinemaFade {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slamIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes wipeRight {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes march {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 40px 0;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.7;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── BIOTECH LOADER ────────────────────────────────────────────────── */
+.biotech-loader {
+  width: 56px;
+  height: 56px;
+  position: relative;
+  border: 2px solid var(--accent);
+  animation: spin 2s linear infinite;
+}
+
+.biotech-loader::before,
+.biotech-loader::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent);
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+.biotech-loader::before {
+  top: 0;
+  left: calc(50% - 5px);
+  transform: translateY(-50%);
+}
+
+.biotech-loader::after {
+  bottom: 0;
+  left: calc(50% - 5px);
+  transform: translateY(50%);
+  background-color: var(--accent-bright);
+  animation-delay: -0.75s;
+}
+
+/* ─── RANGE INPUT ───────────────────────────────────────────────────── */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  background: var(--border-mid);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg-primary);
+  border-radius: 0;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: var(--accent);
+  border: 2px solid var(--bg-primary);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+/* ─── SELECT ────────────────────────────────────────────────────────── */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--bg-surface) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-mid) !important;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent);
+}
