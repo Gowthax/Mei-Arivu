@@ -15,4 +15,14 @@ jobs:
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api main
+        run: |
+          # 1. Set up a temporary bot user
+          git config --global user.email "bot@example.com"
+          git config --global user.name "GitHub Action Bot"
+          
+          # 2. Delete the frontend folder from this temporary deployment
+          git rm -rf frontend/ || true
+          git commit -m "Exclude frontend and large video from Hugging Face" || true
+          
+          # 3. Force push only the backend code to Hugging Face
+          git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api HEAD:main
