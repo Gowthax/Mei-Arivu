@@ -21,7 +21,7 @@ export default function TelemetryView() {
         setError('');
         setResult(null);
         try {
-            const response = await fetch('/api/predict', {
+            const response = await fetch('https://monkpirate-mei-arivu-api.hf.space/api/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(currentParams)
