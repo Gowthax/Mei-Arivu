@@ -22,15 +22,20 @@ jobs:
           # 2. Completely remove the frontend folder
           rm -rf frontend/
           
-          # 3. Start a fresh, clean Git repository with zero history
+          # 3. Start a fresh, clean Git repository
           git init
           git checkout -b main
           git config user.email "bot@example.com"
           git config user.name "GitHub Action Bot"
           
-          # 4. Add only the remaining backend files
-          git add .
-          git commit -m "Clean backend deployment"
+          # 4. TURN ON GIT LFS FOR .PKL FILES (This fixes the binary error!)
+          git lfs install
+          git lfs track "*.pkl"
+          git add .gitattributes
           
-          # 5. Force push this lightweight payload to Hugging Face
+          # 5. Add only the remaining backend files
+          git add .
+          git commit -m "Clean backend deployment with LFS"
+          
+          # 6. Force push this lightweight payload to Hugging Face
           git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api main
