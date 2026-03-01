@@ -16,26 +16,27 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # 1. Destroy the git history in the temporary runner
+          # 1. Destroy old git history
           rm -rf .git
           
-          # 2. Completely remove the frontend folder
-          rm -rf frontend/
+          # 2. Move everything from 'backend' to the root directory
+          mv backend/* . || true
           
-          # 3. Start a fresh, clean Git repository
+          # 3. Delete folders we don't need for the API
+          rm -rf frontend/
+          rm -rf backend/
+          
+          # 4. Start fresh Git repo
           git init
           git checkout -b main
           git config user.email "bot@example.com"
           git config user.name "GitHub Action Bot"
           
-          # 4. TURN ON GIT LFS FOR .PKL FILES (This fixes the binary error!)
+          # 5. Track model files
           git lfs install
           git lfs track "*.pkl"
-          git add .gitattributes
-          
-          # 5. Add only the remaining backend files
           git add .
-          git commit -m "Clean backend deployment with LFS"
+          git commit -m "Deploy backend files to root"
           
-          # 6. Force push this lightweight payload to Hugging Face
+          # 6. Force push
           git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api main
