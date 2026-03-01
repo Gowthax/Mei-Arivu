@@ -10,19 +10,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          lfs: true
-      - name: Push to hub
+          fetch-depth: 1 
+          lfs: false
+      - name: Push clean backend to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          # 1. Set up a temporary bot user
-          git config --global user.email "bot@example.com"
-          git config --global user.name "GitHub Action Bot"
+          # 1. Destroy the git history in the temporary runner
+          rm -rf .git
           
-          # 2. Delete the frontend folder from this temporary deployment
-          git rm -rf frontend/ || true
-          git commit -m "Exclude frontend and large video from Hugging Face" || true
+          # 2. Completely remove the frontend folder
+          rm -rf frontend/
           
-          # 3. Force push only the backend code to Hugging Face
-          git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api HEAD:main
+          # 3. Start a fresh, clean Git repository with zero history
+          git init
+          git checkout -b main
+          git config user.email "bot@example.com"
+          git config user.name "GitHub Action Bot"
+          
+          # 4. Add only the remaining backend files
+          git add .
+          git commit -m "Clean backend deployment"
+          
+          # 5. Force push this lightweight payload to Hugging Face
+          git push --force https://MONKPIRATE:$HF_TOKEN@huggingface.co/spaces/MONKPIRATE/mei-arivu-api main
